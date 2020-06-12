@@ -51,6 +51,11 @@ uncomment deb-src in /etc/apt/sources.list
 sudo apt update
 sudo apt-get build-dep qtbase-opensource-src
 ```
+*(optional) for gstreamer support*
+```
+sudo apt-get install gstreamer1.0-plugins* libgstreamer-plugins-base1.0-dev libopenal-dev
+```
+
 sudo mkdir -p /opt/qt/5.15.0
 sudo chown -R 1000:1000 /opt/qt
 
@@ -72,6 +77,7 @@ mkdir build & cd build
 ```
 ../../../qt-everywhere-src-5.15.0/configure -release -opengl es2 -eglfs -device linux-rasp-pi4b-v3d-g++ -device-option CROSS_COMPILE=/usr/bin/aarch64-linux-gnu- -sysroot /path/to/rootfs -prefix /opt/qt/5.15.0 -opensource -confirm-license -skip qtscript -skip qtwebengine -nomake tests -nomake examples -make libs -pkg-config -no-use-gold-linker -v -recheck
 ```
+*(optional) -optimize-size*
 
 ##build
 
@@ -104,9 +110,15 @@ sudo apt-get dist-upgrade
 sudo rpi-update
 sudo reboot
 ```  
+
+```  
 sudo apt-get build-dep qtbase-opensource-src
 sudo apt-get install libts-dev libbluetooth-dev bluez-tools gstreamer1.0-plugins* libgstreamer-plugins-base1.0-dev libopenal-dev pulseaudio
 
+apt-get install libxcb-xinerama0-dev flex bison gperf libicu-dev libxslt-dev ruby libssl-dev libxcursor-dev libxcomposite-dev libxdamage-dev libxrandr-dev libdbus-1-dev libfontconfig1-dev libcap-dev libxtst-dev libpulse-dev libudev-dev libpci-dev libnss3-dev libasound2-dev libxss-dev libegl1-mesa-dev gperf bison libasound2-dev libgstreamer0.10-dev libgstreamer-plugins-base0.10-dev
+
+apt-get install '^libxcb.*-dev' libx11-xcb-dev libglu1-mesa-dev libxrender-dev libxi-dev
+```  
 
 ### prepare host
 mkdir -p rootfs/usr/include & mkdir -p rootfs/usr/lib & mkdir -p  rootfs/opt/qt/5.15.0
